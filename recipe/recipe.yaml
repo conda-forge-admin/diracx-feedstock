@@ -204,11 +204,12 @@ outputs:
         - diracx-core ==${{ version }}
         - opensearch-py
         - aiohttp>=3.12.14,<4 # Needed for opensearch-py's async extra
+        - opentelemetry-api >=1.40.0
         - pydantic >=2.10
         - python-dateutil
         - sqlalchemy-with-aiomysql
         - sqlalchemy-with-aiosqlite
-        - uuid-utils
+        - uuid-utils <1.0.0
 
     tests:
       - python:
@@ -291,14 +292,15 @@ outputs:
         - diracx-db ==${{ version }}
         - diracx-logic ==${{ version }}
         - diracx-tasks ==${{ version }}
-        - fastapi >=0.121.0
+        - fastapi >=0.121.0,<0.137.0
         - httpx2
         - joserfc
         - opentelemetry-api >=1.40.0
-        - opentelemetry-exporter-otlp >=1.40.0
+        - opentelemetry-exporter-otlp >=1.40.0 # Needed for diracx-core's otel extra
         - opentelemetry-instrumentation-fastapi >=0.61b0
-        - opentelemetry-instrumentation-logging >=0.61b0
-        - opentelemetry-sdk >=1.40.0
+        - opentelemetry-instrumentation-logging >=0.63b1 # Needed for diracx-core's otel extra
+        - opentelemetry-sdk >=1.40.0 # Needed for diracx-core's otel extra
+        - opentelemetry-util-http >=0.61b0
         - pydantic >=2.10
         - python-dotenv
         - python-multipart
@@ -347,7 +349,10 @@ outputs:
         - fastapi >=0.121.0
         - hiredis
         - msgpack-python
-        - opentelemetry-api
+        - opentelemetry-api >=1.40.0
+        - opentelemetry-exporter-otlp >=1.40.0 # Needed for diracx-core's otel extra
+        - opentelemetry-instrumentation-logging >=0.63b1 # Needed for diracx-core's otel extra
+        - opentelemetry-sdk >=1.40.0 # Needed for diracx-core's otel extra
         - pydantic >=2.10
         - python-dateutil
         - redis-py
@@ -387,16 +392,19 @@ outputs:
         - python >=${{ python_min }}
         - diracx-core ==${{ version }}
         - freezegun
+        - grpcio
         - httpx2
         - joserfc
-        - pytest
+        - opentelemetry-proto
+        - opentelemetry-sdk
+        - pytest <9.1.0
         - pytest-asyncio >=1.1.0
         - pytest-cov
         - pytest-github-actions-annotate-failures
         - pytest-lazy-fixtures
         - pytest-xdist
         - sqlalchemy
-        - uuid-utils
+        - uuid-utils <1.0.0
 
     tests:
       - python:
